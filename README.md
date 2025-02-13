@@ -75,9 +75,10 @@ Cost/Benefit/Time was very much an aspect to deciding what to work on and what n
 5. Country to Province association should be implemented (but not for a demo...)
 6. The browse file has no way to clear the file selection.
 7. The budget is not perfectly aligned as I didn't want to juggle flexbox
-8. Dialog boxes should be replaced by pretty modals for confirmations
-9. Some fading in and out would be nice after clicking submit
-10. No accomodation has been made for localization 
+8. The budget does not have a focus class to highlight it.
+9. Dialog boxes should be replaced by pretty modals for confirmations
+10. Some fading in and out would be nice after clicking submit
+11. No accomodation has been made for localization 
 ### Server Side
 1. Data is not validated (uploaded file size, escaping of characters)
 2. I did not know how to access mysql without using a library.  I installed mysqli library.
