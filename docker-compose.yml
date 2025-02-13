@@ -1,0 +1,31 @@
+version: '3.8'               
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"              # this line maps your pc port to the container port
+    depends_on:
+      - db                   # this line links this container to the db container
+    volumes:
+      - ./html:/var/www/html # this line maps the content of ./html in your pc to the /var/www/html of the container
+      - ./files:/opt/files 
+  db:
+    image: mysql:8.1.0       
+    environment:
+      MYSQL_ROOT_PASSWORD: password    # root user password for mysql
+      MYSQL_DATABASE: request          # name of primary db to create
+    volumes:
+      - ./mysql_data:/var/lib/mysql         # locally mapped data folder
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/1.sql # load schema
+      - ./sql/data.sql:/docker-entrypoint-initdb.d/2.sql   # load data (loads in alpha order based on filename)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"            # this line maps your pc port to the container port
+    depends_on:
+      - db                   # this line links this container to the db container
+    environment:
+      PMA_HOST: db
+      
